@@ -8,6 +8,7 @@ class Stone : public Sphere
 public:
     Stone(QPoint size1);
     ~Stone();
+    double getType() { return STONE; };
 };
 
 #endif // STONE_H

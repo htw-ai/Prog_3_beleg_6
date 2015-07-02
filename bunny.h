@@ -8,6 +8,7 @@ class Bunny : public Sphere
 public:
     Bunny(QPoint size1);
     ~Bunny();
+    double getType() { return BUNNY; };
 };
 
 #endif // BUNNY_H

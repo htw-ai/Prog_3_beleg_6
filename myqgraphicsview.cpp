@@ -7,6 +7,9 @@
 #include <QPointF>
 #include <QPoint>
 
+#include <iostream>
+using namespace std;
+
 MyQGraphicsView::MyQGraphicsView(QWidget *parent) :
     QGraphicsView(parent)
 {
@@ -27,7 +30,22 @@ void MyQGraphicsView::mousePressEvent(QMouseEvent * e)
 void MyQGraphicsView::timerEvent(QTimerEvent *event)
 {
     scene->clear();
-    for(int i = 0; i < sphere.size(); i++)
+    int i, j;
+    for(i = 0; i < sphere.size(); i++)
+    {
+        for(j = i + 1; j < sphere.size(); j++)
+        {
+            if(sphere[i]->getX() == sphere[j]->getX() && sphere[i]->getY() == sphere[j]->getY())
+            {
+                if(sphere[i]->getType() == WOLF && sphere[j]->getType() == BUNNY)
+                    sphere.erase(sphere.begin() + j);
+                if(sphere[i]->getType() == BUNNY && sphere[j]->getType() == CARROT)
+                    sphere.erase(sphere.begin() + j);
+            }
+        }
+    }
+
+    for(i = 0; i < sphere.size(); i++)
     {
         printSphere(sphere[i]->getX(), sphere[i]->getY(), sphere[i]->getRad(), sphere[i]->getColor(), sphere[i]->getBrush());
         sphere[i]->move();

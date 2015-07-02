@@ -5,6 +5,10 @@
 #include <QGraphicsScene>
 #include <cstdlib>
 
+typedef enum SphereType_Enum {
+   NONE, BIRD, BUNNY, CARROT, STONE, WOLF
+} SphereType;
+
 class Sphere
 {
 public:
@@ -22,6 +26,7 @@ public:
     double getRad() { return rad; };
     double getColor() { return color; };
     double getBrush() { return brush; };
+    virtual double getType() { return NONE; };
 protected:
     QPoint coord;
     QPoint step;

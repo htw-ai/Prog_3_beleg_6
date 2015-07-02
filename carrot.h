@@ -7,6 +7,7 @@ class Carrot : public Sphere
 public:
     Carrot(QPoint size1);
     ~Carrot();
+    double getType() { return CARROT; };
 };
 
 #endif // CARROT_H

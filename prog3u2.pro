@@ -9,7 +9,6 @@ INCLUDEPATH += .
 
 # Input
 HEADERS += \
-    dot.h \
     myqgraphicsview.h \
     sphere.h \
     carrot.h \
@@ -18,7 +17,6 @@ HEADERS += \
     bird.h \
     wolf.h
 SOURCES += main.cpp \
-    dot.cpp \
     myqgraphicsview.cpp \
     sphere.cpp \
     carrot.cpp \
