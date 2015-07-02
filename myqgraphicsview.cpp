@@ -7,6 +7,7 @@
 #include <QPointF>
 #include <QPoint>
 
+#include <math.h>
 #include <iostream>
 using namespace std;
 
@@ -22,9 +23,15 @@ MyQGraphicsView::MyQGraphicsView(QWidget *parent) :
 
 void MyQGraphicsView::mousePressEvent(QMouseEvent * e)
 {
-    sphere.clear();
-//    initFirework(e->pos());
-//    change direction of birds and bunnies
+    float tan;
+    for(int i = 0; i < sphere.size(); i++)
+    {
+        if(sphere[i]->getType() == BIRD || sphere[i]->getType() == BUNNY)
+        {
+            tan = atan2(sphere[i]->getY() - e->pos().y(), sphere[i]->getX() - e->pos().x());
+            sphere[i]->flipTan(tan);
+        }
+    }
 }
 
 void MyQGraphicsView::timerEvent(QTimerEvent *event)

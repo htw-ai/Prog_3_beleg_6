@@ -2,6 +2,7 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <cstdlib>
+#include <math.h>
 
 Sphere::Sphere()
 {
@@ -20,6 +21,13 @@ Sphere::Sphere(QPoint coord1, QPoint size1)
 QPoint Sphere::calcStep()
 {
     return QPoint((((rand() % 10) - 5) + 1), (((rand() % 10) - 5) + 1));
+}
+
+void Sphere::flipTan(float tan)
+{
+    float deg = tan * 180 / M_PI;
+    step.setX(deg / 20);
+    step.setY(deg / 20);
 }
 
 int Sphere::calcColor()

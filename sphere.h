@@ -31,6 +31,8 @@ public:
      */
     virtual void flipY();
 
+    void flipTan(float tan);
+
     // attr readers
     double getX() { return coord.x(); };
     double getY() { return coord.y(); };
@@ -71,6 +73,7 @@ protected:
      *
      * @return int
      */
+
     int calcColor();
 };
 
