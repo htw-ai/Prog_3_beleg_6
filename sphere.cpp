@@ -19,7 +19,7 @@ Sphere::Sphere(QPoint coord1, QPoint size1)
 
 QPoint Sphere::calcStep()
 {
-    return QPoint((((rand() % 20) - 10) + 1), (((rand() % 20) - 15) + 1));
+    return QPoint((((rand() % 10) - 5) + 1), (((rand() % 10) - 5) + 1));
 }
 
 int Sphere::calcColor()
@@ -32,6 +32,10 @@ void Sphere::move()
     coord += step;
     if(collisionX()) flipX();
     if(collisionY()) flipY();
+}
+
+QPoint Sphere::randomCoord() {
+   return QPoint((rand() % size.x()), (rand() % size.y()));
 }
 
 bool Sphere::collisionX()

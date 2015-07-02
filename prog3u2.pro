@@ -12,9 +12,17 @@ HEADERS += \
     dot.h \
     myqgraphicsview.h \
     sphere.h \
-    circle.h
+    carrot.h \
+    bunny.h \
+    stone.h \
+    bird.h \
+    wolf.h
 SOURCES += main.cpp \
     dot.cpp \
     myqgraphicsview.cpp \
     sphere.cpp \
-    circle.cpp
+    carrot.cpp \
+    bunny.cpp \
+    stone.cpp \
+    bird.cpp \
+    wolf.cpp

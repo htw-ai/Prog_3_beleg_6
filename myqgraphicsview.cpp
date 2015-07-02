@@ -1,6 +1,9 @@
 #include "myqgraphicsview.h"
-#include "dot.h"
-#include "circle.h"
+#include "bunny.h"
+#include "carrot.h"
+#include "wolf.h"
+#include "bird.h"
+#include "stone.h"
 #include <QPointF>
 #include <QPoint>
 
@@ -40,9 +43,15 @@ void MyQGraphicsView::initFirework(QPoint coord)
 Sphere* MyQGraphicsView::newSpehere(int i, QPoint coord)
 {
     if(i % 3)
-        return new Circle(coord, size);
+        return new Carrot(size);
+    else if(i % 5)
+        return new Bunny(size);
+    else if(i % 7)
+        return new Wolf(size);
+    else if(i % 9)
+        return new Bird(size);
     else
-        return new Dot(coord, size);
+        return new Stone(size);
 }
 
 void MyQGraphicsView::printSphere(int x, int y, double rad, int color, int brush)

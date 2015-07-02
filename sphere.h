@@ -49,6 +49,12 @@ protected:
      */
     virtual void flipY();
 
+    /** @brief calculates random coord
+     *
+     * @return QPoint
+     */
+    QPoint randomCoord();
+
     /** @brief calculates random step
      *
      * @return QPoint
