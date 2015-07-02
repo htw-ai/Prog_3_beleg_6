@@ -20,12 +20,24 @@ public:
      */
     void move();
 
+    /** @brief flips the step direction on x
+     *
+     * @return void
+     */
+    virtual void flipX();
+    /** @brief flips the step direction on y
+     *
+     * @return void
+     */
+    virtual void flipY();
+
     // attr readers
     double getX() { return coord.x(); };
     double getY() { return coord.y(); };
     double getRad() { return rad; };
     double getColor() { return color; };
     double getBrush() { return brush; };
+    QPoint getStep() { return step; };
     virtual double getType() { return NONE; };
 protected:
     QPoint coord;
@@ -43,16 +55,6 @@ protected:
      * @return bool
      */
     bool collisionY();
-    /** @brief flips the step direction on x
-     *
-     * @return void
-     */
-    virtual void flipX();
-    /** @brief flips the step direction on y
-     *
-     * @return void
-     */
-    virtual void flipY();
 
     /** @brief calculates random coord
      *

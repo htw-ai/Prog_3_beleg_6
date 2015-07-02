@@ -35,12 +35,24 @@ void MyQGraphicsView::timerEvent(QTimerEvent *event)
     {
         for(j = i + 1; j < sphere.size(); j++)
         {
-            if(sphere[i]->getX() == sphere[j]->getX() && sphere[i]->getY() == sphere[j]->getY())
+            if((sphere[i]->getX() - (sphere[i]->getRad() * 2)) < sphere[j]->getX() &&
+               (sphere[i]->getX() + (sphere[i]->getRad() * 2)) > sphere[j]->getX() &&
+               (sphere[i]->getY() - (sphere[i]->getRad() * 2)) < sphere[j]->getY() &&
+               (sphere[i]->getY() + (sphere[i]->getRad() * 2)) > sphere[j]->getY())
             {
                 if(sphere[i]->getType() == WOLF && sphere[j]->getType() == BUNNY)
                     sphere.erase(sphere.begin() + j);
                 if(sphere[i]->getType() == BUNNY && sphere[j]->getType() == CARROT)
                     sphere.erase(sphere.begin() + j);
+                if(sphere[i]->getType() == STONE && (sphere[j]->getType() == BUNNY || sphere[j]->getType() == WOLF)){
+                    if((sphere[j]->getStep().x() ^ -1) > (sphere[j]->getStep().y() ^ -1)){
+                        sphere[j]->flipX();
+                    }else{
+                        sphere[j]->flipY();
+                    }
+                }
+//                if(sphere[i]->getType() == BUNNY && sphere[j]->getType() == BUNNY)
+//                    sphere.push_back(new Bunny(size));
             }
         }
     }
@@ -63,9 +75,9 @@ Sphere* MyQGraphicsView::newSpehere(int i, QPoint coord)
     if(i % 3)
         return new Carrot(size);
     else if(i % 5)
-        return new Bunny(size);
-    else if(i % 7)
         return new Wolf(size);
+    else if(i % 7)
+        return new Bunny(size);
     else if(i % 9)
         return new Bird(size);
     else
