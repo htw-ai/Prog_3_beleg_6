@@ -35,11 +35,20 @@ int Sphere::calcColor()
     return (rand() % 16);
 }
 
+void Sphere::wait()
+{
+    waitNum = 5;
+}
+
 void Sphere::move()
 {
-    coord += step;
-    if(collisionX()) flipX();
-    if(collisionY()) flipY();
+    if(0 == waitNum) {
+        coord += step;
+        if(collisionX()) flipX();
+        if(collisionY()) flipY();
+    }else{
+        waitNum--;
+    }
 }
 
 QPoint Sphere::randomCoord() {

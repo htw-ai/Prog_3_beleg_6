@@ -31,6 +31,8 @@ public:
      */
     virtual void flipY();
 
+    virtual void wait();
+
     void flipTan(float tan);
 
     // attr readers
@@ -42,6 +44,7 @@ public:
     QPoint getStep() { return step; };
     virtual double getType() { return NONE; };
 protected:
+    int waitNum = 0;
     QPoint coord;
     QPoint step;
     QPoint size;

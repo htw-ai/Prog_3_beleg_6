@@ -26,7 +26,7 @@ void MyQGraphicsView::mousePressEvent(QMouseEvent * e)
     float tan;
     for(int i = 0; i < sphere.size(); i++)
     {
-        if(sphere[i]->getType() == BIRD || sphere[i]->getType() == BUNNY)
+        if(sphere[i]->getType() == BIRD || sphere[i]->getType() == BUNNY || sphere[i]->getType() == WOLF)
         {
             tan = atan2(sphere[i]->getY() - e->pos().y(), sphere[i]->getX() - e->pos().x());
             sphere[i]->flipTan(tan);
@@ -47,11 +47,13 @@ void MyQGraphicsView::timerEvent(QTimerEvent *event)
                (sphere[i]->getY() - (sphere[i]->getRad() * 2)) < sphere[j]->getY() &&
                (sphere[i]->getY() + (sphere[i]->getRad() * 2)) > sphere[j]->getY())
             {
-                if(sphere[i]->getType() == WOLF && sphere[j]->getType() == BUNNY)
+                if(sphere[i]->getType() == WOLF && sphere[j]->getType() == BUNNY) {
                     sphere.erase(sphere.begin() + j);
-                if(sphere[i]->getType() == BUNNY && sphere[j]->getType() == CARROT)
+                    sphere[i]->wait();
+                } else if(sphere[i]->getType() == BUNNY && sphere[j]->getType() == CARROT) {
                     sphere.erase(sphere.begin() + j);
-                if(sphere[i]->getType() == STONE && (sphere[j]->getType() == BUNNY || sphere[j]->getType() == WOLF)){
+                    sphere[i]->wait();
+                } else if(sphere[i]->getType() == STONE && (sphere[j]->getType() == BUNNY || sphere[j]->getType() == WOLF)){
                     if((sphere[j]->getStep().x() ^ -1) > (sphere[j]->getStep().y() ^ -1)){
                         sphere[j]->flipX();
                     }else{
@@ -73,8 +75,19 @@ void MyQGraphicsView::timerEvent(QTimerEvent *event)
 
 void MyQGraphicsView::initFirework(QPoint coord)
 {
-    for(int i = 0; i < sphereSize; i++)
-        sphere.push_back(newSpehere(i, coord));
+//    for(int i = 0; i < sphereSize; i++)
+//        sphere.push_back(newSpehere(i, coord));
+    for(int i = 0; i < sphereSize; i++) {
+
+            sphere.push_back(new Carrot(size));
+            if(i % 2) {
+                sphere.push_back(new Wolf(size));
+                sphere.push_back(new Bunny(size));
+            }
+            if(i % 3)
+                sphere.push_back(new Bird(size));
+            sphere.push_back(new Stone(size));
+    }
 }
 
 Sphere* MyQGraphicsView::newSpehere(int i, QPoint coord)
